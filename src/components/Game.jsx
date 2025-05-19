@@ -1,0 +1,57 @@
+import { useState } from 'react'
+import InputNumber from './InputNumber'
+import Message from './Message'
+import RestartButton from './RestartButton'
+
+const Game = () => {
+  const [numeroSecreto, setNumeroSecreto] = useState(generarNumero())
+  const [input, setInput] = useState('')
+  const [mensaje, setMensaje] = useState('')
+  const [juegoTerminado, setJuegoTerminado] = useState(false)
+
+  function generarNumero () {
+    return Math.floor(Math.random() * 100) + 1
+  }
+
+  const manejarCambio = (e) => {
+    setInput(e.target.value)
+  }
+
+  const manejarEnvio = (e) => {
+    e.preventDefault()
+    const numero = parseInt(input)
+    if (isNaN(numero)) {
+      setMensaje('Por favor, introduce un número válido.')
+      return
+    }
+    if (numero === numeroSecreto) {
+      setMensaje('¡Correcto!')
+      setJuegoTerminado(true)
+    } else if (numero < numeroSecreto) {
+      setMensaje('El número es mayor.')
+    } else {
+      setMensaje('El número es menor.')
+    }
+  }
+
+  const reiniciarJuego = () => {
+    setNumeroSecreto(generarNumero())
+    setInput('')
+    setMensaje('')
+    setJuegoTerminado(false)
+  }
+
+  return (
+    <div>
+      <h1>🎯 Adivina el número (1-100)</h1>
+      <form onSubmit={manejarEnvio}>
+        <InputNumber value={input} onChange={manejarCambio} disabled={juegoTerminado} />
+        <button type='submit' disabled={juegoTerminado}>Adivinar</button>
+      </form>
+      <Message mensaje={mensaje} />
+      {juegoTerminado && <RestartButton onClick={reiniciarJuego} />}
+    </div>
+  )
+}
+
+export default Game
