@@ -2,7 +2,8 @@ import { useState } from 'react'
 import InputNumber from './InputNumber'
 import Message from './Message'
 import RestartButton from './RestartButton'
-
+import './Game.css'
+import miImagen from '../assets/mago.gif'
 const Game = () => {
   const [intentos, setIntentos] = useState(0)
   const [numeroSecreto, setNumeroSecreto] = useState(generarNumero())
@@ -45,8 +46,8 @@ const Game = () => {
   }
 
   return (
-    <div>
-      <h1>🎯 Adivina el número (1-100)</h1>
+    <div className='game-container'>
+      <h1> Adivina el número (1-100)</h1>
       <p>Intentos: {intentos}</p>
       <form onSubmit={manejarEnvio}>
         <InputNumber value={input} onChange={manejarCambio} disabled={juegoTerminado} />
@@ -54,6 +55,7 @@ const Game = () => {
       </form>
       <Message mensaje={mensaje} />
       {juegoTerminado && <RestartButton onClick={reiniciarJuego} />}
+      <img src={miImagen} alt='mago' />
     </div>
   )
 }

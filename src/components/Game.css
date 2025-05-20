@@ -1,0 +1,57 @@
+.game-container {
+  max-width: 420px;
+  margin: 40px auto;
+  padding: 2rem 2.5rem;
+  background: #bfbfef;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.game-container h1 {
+  margin-bottom: 1.5rem;
+  color: #4a4e69;
+}
+
+.game-container p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.game-container form {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.game-container input[type="number"] {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #818d8d;
+  width: 100px;
+  font-size: 1rem;
+}
+
+.game-container button[type="submit"],
+.game-container button {
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  border: none;
+  background: #22223b;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.game-container button:disabled {
+  background: #bfc0c0;
+  cursor: not-allowed;
+}
+
+.game-container .mensaje {
+  margin: 1rem 0;
+  font-weight: bold;
+  color: #9a031e;
+}
