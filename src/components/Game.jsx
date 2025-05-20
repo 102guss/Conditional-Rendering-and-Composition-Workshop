@@ -4,6 +4,7 @@ import Message from './Message'
 import RestartButton from './RestartButton'
 
 const Game = () => {
+  const [intentos, setIntentos] = useState(0)
   const [numeroSecreto, setNumeroSecreto] = useState(generarNumero())
   const [input, setInput] = useState('')
   const [mensaje, setMensaje] = useState('')
@@ -24,6 +25,7 @@ const Game = () => {
       setMensaje('Por favor, introduce un número válido.')
       return
     }
+    setIntentos(intentos + 1)
     if (numero === numeroSecreto) {
       setMensaje('¡Correcto!')
       setJuegoTerminado(true)
@@ -39,11 +41,13 @@ const Game = () => {
     setInput('')
     setMensaje('')
     setJuegoTerminado(false)
+    setIntentos(0) // Reiniciar intentos
   }
 
   return (
     <div>
       <h1>🎯 Adivina el número (1-100)</h1>
+      <p>Intentos: {intentos}</p>
       <form onSubmit={manejarEnvio}>
         <InputNumber value={input} onChange={manejarCambio} disabled={juegoTerminado} />
         <button type='submit' disabled={juegoTerminado}>Adivinar</button>
